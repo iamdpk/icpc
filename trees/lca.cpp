@@ -3,7 +3,7 @@ using namespace std;
 
 int LOG,n;
 vector<int>g[100009];
-int tmr=0,tin[100009],tout[100009];
+int tmr,tin[100009],tout[100009];
 int dp[100009][20];
 
 void pre(){
@@ -12,6 +12,10 @@ void pre(){
   LOG=1;
   while((1<<LOG)<=n)
     ++LOG;
+  
+  for(int i=0;i<=100000;++i)
+    for(int j=0;j<20;++j)
+      dp[i][j]=0;
   
   tmr=0;
   dfs(1,0);
@@ -39,17 +43,19 @@ bool upper(int a,int b){
 }
 
 int lca(int a,int b){
-
+  //3 cases b is in subtree of a,  a is in bs subtree, different subtrees 
+  
   if(upper(a,b))
     return a;
   if(upper(b,a))
     return b;
   
+  //similar idea as in finding binary repn of num
   for(int i=LOG;i>=0;--i)
     if(!upper(dp[a][i],b))
       a=dp[a][i];
   
-  return dp[a][0];
+  return dp[a][0];//why always dp[a][0] what if odd???
 }
 
 int main(){
