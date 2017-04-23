@@ -1,2 +1,2 @@
-## icpc
-# Resources related to competitive programming
+# icpc
+## Resources related to competitive programming
