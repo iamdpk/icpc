@@ -1,1 +1,10 @@
+factorization in logn
 
+modified sieve =each composite stores its largest prime divisor
+
+factors{}
+factorise(int n){
+  factors.push_back(largestprime[n]);
+  n/=largestprime[n];
+  factorise(n);
+}
